@@ -1,3 +1,5 @@
-export '../blocs/todos/todos.dart';
-export '../blocs/filtered_todos/filtered_todos.dart';
-export '../blocs/stats/stats.dart';
+export './todos/todos.dart';
+export './filtered_todos/filtered_todos.dart';
+export './stats/stats.dart';
+export './tab/tab.dart';
+export './simple_bloc_delegate.dart';
