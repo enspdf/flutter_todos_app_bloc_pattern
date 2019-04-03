@@ -21,10 +21,10 @@ class AddTodo extends TodosEvent {
   String toString() => "AddTodo {todo: $todo}";
 }
 
-class Updatetodo extends TodosEvent {
+class UpdateTodo extends TodosEvent {
   final Todo updateTodo;
 
-  Updatetodo(this.updateTodo) : super([updateTodo]);
+  UpdateTodo(this.updateTodo) : super([updateTodo]);
 
   @override
   String toString() => "UpdateTodo {updateTodo: $updateTodo}";
