@@ -13,5 +13,5 @@ class UpdateTab extends TabEvent {
   UpdateTab(this.tab) : super([tab]);
 
   @override
-  String toString() => "UpdateTap {tab: $tab}";
+  String toString() => 'UpdateTab { tab: $tab }';
 }

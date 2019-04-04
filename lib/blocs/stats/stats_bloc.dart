@@ -26,7 +26,6 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
           event.todos.where((todo) => !todo.complete).toList().length;
       int numCompleted =
           event.todos.where((todo) => todo.complete).toList().length;
-
       yield StatsLoaded(numActive, numCompleted);
     }
   }

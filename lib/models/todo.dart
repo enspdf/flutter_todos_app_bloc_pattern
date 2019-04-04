@@ -10,16 +10,18 @@ class Todo extends Equatable {
   final String note;
   final String task;
 
-  Todo(this.task, {this.complete = false, String note = "", String id})
-      : this.note = note ?? "",
+  Todo(this.task, {this.complete = false, String note = '', String id})
+      : this.note = note ?? '',
         this.id = id ?? Uuid().generateV4(),
         super([complete, id, note, task]);
 
   Todo copyWith({bool complete, String id, String note, String task}) {
-    return Todo(task ?? this.task,
-        complete: complete ?? this.complete,
-        id: id ?? this.id,
-        note: note ?? this.note);
+    return Todo(
+      task ?? this.task,
+      complete: complete ?? this.complete,
+      id: id ?? this.id,
+      note: note ?? this.note,
+    );
   }
 
   @override

@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
   HomeScreen({@required this.onInit}) : super(key: ArchSampleKeys.homeScreen);
 
   @override
-  State<StatefulWidget> createState() => _HomeScreenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -26,6 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _filteredTodosBloc = FilteredTodosBloc(
       todosBloc: BlocProvider.of<TodosBloc>(context),
     );
+    _statsBloc = StatsBloc(
+      todosBloc: BlocProvider.of<TodosBloc>(context),
+    );
     super.initState();
   }
 
@@ -36,15 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (BuildContext context, AppTab activeTab) {
         return BlocProviderTree(
           blocProviders: [
-            BlocProvider<TabBloc>(
-              bloc: _tabBloc,
-            ),
-            BlocProvider<FilteredTodosBloc>(
-              bloc: _filteredTodosBloc,
-            ),
-            BlocProvider<StatsBloc>(
-              bloc: _statsBloc,
-            )
+            BlocProvider<TabBloc>(bloc: _tabBloc),
+            BlocProvider<FilteredTodosBloc>(bloc: _filteredTodosBloc),
+            BlocProvider<StatsBloc>(bloc: _statsBloc),
           ],
           child: Scaffold(
             appBar: AppBar(
@@ -65,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             bottomNavigationBar: TabSelector(
               activeTab: activeTab,
-              onTabSelected: (tab)  => _tabBloc.dispatch(UpdateTab(tab));
+              onTabSelected: (tab) => _tabBloc.dispatch(UpdateTab(tab)),
             ),
           ),
         );

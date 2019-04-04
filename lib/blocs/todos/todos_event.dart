@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/todo.dart';
+import 'package:flutter_todos/models/models.dart';
 
 @immutable
 abstract class TodosEvent extends Equatable {
@@ -9,7 +9,7 @@ abstract class TodosEvent extends Equatable {
 
 class LoadTodos extends TodosEvent {
   @override
-  String toString() => "LoadTodos";
+  String toString() => 'LoadTodos';
 }
 
 class AddTodo extends TodosEvent {
@@ -18,16 +18,16 @@ class AddTodo extends TodosEvent {
   AddTodo(this.todo) : super([todo]);
 
   @override
-  String toString() => "AddTodo {todo: $todo}";
+  String toString() => 'AddTodo { todo: $todo }';
 }
 
 class UpdateTodo extends TodosEvent {
-  final Todo updateTodo;
+  final Todo updatedTodo;
 
-  UpdateTodo(this.updateTodo) : super([updateTodo]);
+  UpdateTodo(this.updatedTodo) : super([updatedTodo]);
 
   @override
-  String toString() => "UpdateTodo {updateTodo: $updateTodo}";
+  String toString() => 'UpdateTodo { updatedTodo: $updatedTodo }';
 }
 
 class DeleteTodo extends TodosEvent {
@@ -36,15 +36,15 @@ class DeleteTodo extends TodosEvent {
   DeleteTodo(this.todo) : super([todo]);
 
   @override
-  String toString() => "DeleteTodo {todo: $todo}";
+  String toString() => 'DeleteTodo { todo: $todo }';
 }
 
 class ClearCompleted extends TodosEvent {
   @override
-  String toString() => "ClearCompleted";
+  String toString() => 'ClearCompleted';
 }
 
 class ToggleAll extends TodosEvent {
   @override
-  String toString() => "ToggleAll";
+  String toString() => 'ToggleAll';
 }

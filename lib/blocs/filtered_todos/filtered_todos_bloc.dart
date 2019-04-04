@@ -31,14 +31,15 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   Stream<FilteredTodosState> mapEventToState(
       FilteredTodosState currentState, FilteredTodosEvent event) async* {
     if (event is UpdateFilter) {
-      yield* _mapUpdateFilterToState(currentState, event);
+      yield* _mapUpdateFilterToState(event);
     } else if (event is UpdateTodos) {
-      yield* _mapTodosUpdatedToState(currentState, event);
+      yield* _mapTodosUpdatedToState(event);
     }
   }
 
   Stream<FilteredTodosState> _mapUpdateFilterToState(
-      FilteredTodosState currentState, UpdateFilter event) async* {
+    UpdateFilter event,
+  ) async* {
     if (todosBloc.currentState is TodosLoaded) {
       yield FilteredTodosLoaded(
         _mapTodosToFilteredTodos(
@@ -51,11 +52,10 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   }
 
   Stream<FilteredTodosState> _mapTodosUpdatedToState(
-    FilteredTodosState currentState,
     UpdateTodos event,
   ) async* {
     final visibilityFilter = currentState is FilteredTodosLoaded
-        ? currentState.activeFilter
+        ? (currentState as FilteredTodosLoaded).activeFilter
         : VisibilityFilter.all;
     yield FilteredTodosLoaded(
       _mapTodosToFilteredTodos(
@@ -76,7 +76,7 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
       } else if (filter == VisibilityFilter.completed) {
         return todo.complete;
       }
-    });
+    }).toList();
   }
 
   @override

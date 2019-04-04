@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/todo.dart';
+import 'package:flutter_todos/models/models.dart';
 
 @immutable
 abstract class TodosState extends Equatable {
@@ -9,7 +9,7 @@ abstract class TodosState extends Equatable {
 
 class TodosLoading extends TodosState {
   @override
-  String toString() => "TodosLoading";
+  String toString() => 'TodosLoading';
 }
 
 class TodosLoaded extends TodosState {
@@ -18,10 +18,10 @@ class TodosLoaded extends TodosState {
   TodosLoaded([this.todos = const []]) : super([todos]);
 
   @override
-  String toString() => "TodosLoaded {todos: $todos}";
+  String toString() => 'TodosLoaded { todos: $todos }';
 }
 
 class TodosNotLoaded extends TodosState {
   @override
-  String toString() => "TodosNotLoaded";
+  String toString() => 'TodosNotLoaded';
 }

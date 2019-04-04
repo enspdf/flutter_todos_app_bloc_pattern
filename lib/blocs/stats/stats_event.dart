@@ -13,5 +13,5 @@ class UpdateStats extends StatsEvent {
   UpdateStats(this.todos) : super([todos]);
 
   @override
-  String toString() => "UpdateStats {todos: $todos}";
+  String toString() => 'UpdateStats { todos: $todos }';
 }

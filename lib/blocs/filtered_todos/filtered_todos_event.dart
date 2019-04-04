@@ -13,7 +13,7 @@ class UpdateFilter extends FilteredTodosEvent {
   UpdateFilter(this.filter) : super([filter]);
 
   @override
-  String toString() => "UpdateFilter {filter: $filter}";
+  String toString() => 'UpdateFilter { filter: $filter }';
 }
 
 class UpdateTodos extends FilteredTodosEvent {
@@ -22,5 +22,5 @@ class UpdateTodos extends FilteredTodosEvent {
   UpdateTodos(this.todos) : super([todos]);
 
   @override
-  String toString() => "UpdateTodos {todos: $todos}";
+  String toString() => 'UpdateTodos { todos: $todos }';
 }

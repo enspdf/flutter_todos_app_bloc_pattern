@@ -6,10 +6,10 @@ import 'package:flutter_todos/blocs/todos/todos.dart';
 import 'package:flutter_todos/screens/screens.dart';
 import 'package:flutter_todos/flutter_todos_keys.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailsScreen extends StatelessWidget {
   final String id;
 
-  DetailScreen({Key key, @required this.id})
+  DetailsScreen({Key key, @required this.id})
       : super(key: key ?? ArchSampleKeys.todoDetailsScreen);
 
   @override
@@ -22,7 +22,6 @@ class DetailScreen extends StatelessWidget {
             .todos
             .firstWhere((todo) => todo.id == id, orElse: () => null);
         final localizations = ArchSampleLocalizations.of(context);
-
         return Scaffold(
           appBar: AppBar(
             title: Text(localizations.todoDetails),
@@ -39,9 +38,7 @@ class DetailScreen extends StatelessWidget {
             ],
           ),
           body: todo == null
-              ? Container(
-                  key: FlutterTodosKeys.emptyDetailsContainer,
-                )
+              ? Container(key: FlutterTodosKeys.emptyDetailsContainer)
               : Padding(
                   padding: EdgeInsets.all(16.0),
                   child: ListView(
@@ -49,54 +46,49 @@ class DetailScreen extends StatelessWidget {
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 8.0),
-                                child: Checkbox(
-                                  key: FlutterTodosKeys.detailsScreenCheckBox,
-                                  value: todo.complete,
-                                  onChanged: (_) {
-                                    todosBloc.dispatch(UpdateTodo(todo.copyWith(
-                                        complete: !todo.complete)));
-                                  },
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Hero(
-                                      tag: "${todo.id}__heroTag",
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        padding: EdgeInsets.only(
-                                            top: 8.0, bottom: 16.0),
-                                        child: Text(
-                                          todo.task,
-                                          key: ArchSampleKeys
-                                              .detailsTodoItemTask,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .headline,
-                                        ),
-                                      ),
+                          Padding(
+                            padding: EdgeInsets.only(right: 8.0),
+                            child: Checkbox(
+                                key: FlutterTodosKeys.detailsScreenCheckBox,
+                                value: todo.complete,
+                                onChanged: (_) {
+                                  todosBloc.dispatch(
+                                    UpdateTodo(
+                                      todo.copyWith(complete: !todo.complete),
                                     ),
-                                    Text(
-                                      todo.note,
-                                      key: ArchSampleKeys.detailsTodoItemNote,
+                                  );
+                                }),
+                          ),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Hero(
+                                  tag: '${todo.id}__heroTag',
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    padding: EdgeInsets.only(
+                                      top: 8.0,
+                                      bottom: 16.0,
+                                    ),
+                                    child: Text(
+                                      todo.task,
+                                      key: ArchSampleKeys.detailsTodoItemTask,
                                       style:
-                                          Theme.of(context).textTheme.subhead,
+                                          Theme.of(context).textTheme.headline,
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  todo.note,
+                                  key: ArchSampleKeys.detailsTodoItemNote,
+                                  style: Theme.of(context).textTheme.subhead,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -107,21 +99,24 @@ class DetailScreen extends StatelessWidget {
             onPressed: todo == null
                 ? null
                 : () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return AddEditScreen(
-                        key: ArchSampleKeys.editTodoScreen,
-                        onSave: (task, note) {
-                          todosBloc.dispatch(
-                            UpdateTodo(
-                              todo.copyWith(task: task, note: note),
-                            ),
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return AddEditScreen(
+                            key: ArchSampleKeys.editTodoScreen,
+                            onSave: (task, note) {
+                              todosBloc.dispatch(
+                                UpdateTodo(
+                                  todo.copyWith(task: task, note: note),
+                                ),
+                              );
+                            },
+                            isEditing: true,
+                            todo: todo,
                           );
                         },
-                        isEditing: true,
-                        todo: todo,
-                      );
-                    }));
+                      ),
+                    );
                   },
           ),
         );

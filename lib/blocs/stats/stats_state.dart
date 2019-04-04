@@ -8,7 +8,7 @@ abstract class StatsState extends Equatable {
 
 class StatsLoading extends StatsState {
   @override
-  String toString() => "StatsLoading";
+  String toString() => 'StatsLoading';
 }
 
 class StatsLoaded extends StatsState {
@@ -19,6 +19,7 @@ class StatsLoaded extends StatsState {
       : super([numActive, numCompleted]);
 
   @override
-  String toString() =>
-      "StatsLoaded {numActive: $numActive, numCompleted: $numCompleted}";
+  String toString() {
+    return 'StatsLoaded { numActive: $numActive, numCompleted: $numCompleted }';
+  }
 }

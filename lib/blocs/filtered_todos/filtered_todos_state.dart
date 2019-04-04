@@ -9,7 +9,7 @@ abstract class FilteredTodosState extends Equatable {
 
 class FilteredTodosLoading extends FilteredTodosState {
   @override
-  String toString() => "FilteredTodosLoading";
+  String toString() => 'FilteredTodosLoading';
 }
 
 class FilteredTodosLoaded extends FilteredTodosState {
@@ -20,6 +20,7 @@ class FilteredTodosLoaded extends FilteredTodosState {
       : super([filteredTodos, activeFilter]);
 
   @override
-  String toString() =>
-      "FilteredTodosLoaded {filteredTodos: $filteredTodos, activeFilter: $activeFilter}";
+  String toString() {
+    return 'FilteredTodosLoaded { filteredTodos: $filteredTodos, activeFilter: $activeFilter }';
+  }
 }
